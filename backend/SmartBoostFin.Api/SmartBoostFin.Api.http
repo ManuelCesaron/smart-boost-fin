@@ -1,0 +1,6 @@
+@SmartBoostFin.Api_HostAddress = http://localhost:5072
+
+GET {{SmartBoostFin.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
