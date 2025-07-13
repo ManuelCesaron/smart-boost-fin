@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartBoostFin.Api;
 
@@ -10,9 +11,11 @@ using SmartBoostFin.Api;
 namespace SmartBoostFin.Api.Migrations
 {
     [DbContext(typeof(FinContext))]
-    partial class FinContextModelSnapshot : ModelSnapshot
+    [Migration("20250713082620_AddBanksAndLoanFields")]
+    partial class AddBanksAndLoanFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.18");
@@ -50,15 +53,15 @@ namespace SmartBoostFin.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("AnnualGrossSalary")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("NetAnnualSalary")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -74,9 +77,6 @@ namespace SmartBoostFin.Api.Migrations
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("BankId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("INTEGER");
@@ -104,8 +104,6 @@ namespace SmartBoostFin.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BankId");
-
                     b.HasIndex("CustomerId");
 
                     b.ToTable("LoanApplications");
@@ -113,19 +111,11 @@ namespace SmartBoostFin.Api.Migrations
 
             modelBuilder.Entity("SmartBoostFin.Api.Models.LoanApplication", b =>
                 {
-                    b.HasOne("SmartBoostFin.Api.Models.Bank", "Bank")
-                        .WithMany()
-                        .HasForeignKey("BankId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SmartBoostFin.Api.Models.Customer", "Customer")
                         .WithMany("LoanApplications")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Bank");
 
                     b.Navigation("Customer");
                 });

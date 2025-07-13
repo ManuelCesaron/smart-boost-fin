@@ -9,4 +9,6 @@ public class FinContext : DbContext
 
     public DbSet<Customer> Customers => Set<Customer>();
     public DbSet<LoanApplication> LoanApplications => Set<LoanApplication>();
+    public DbSet<Bank> Banks => Set<Bank>();
+
 }
