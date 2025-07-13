@@ -1,0 +1,26 @@
+.offers-wrapper {
+  max-width: 36rem;
+  margin: 4rem auto 0;
+  text-align: center;
+}
+
+/* grassetto di default su tutte le celle */
+table mat-header-cell,
+table mat-cell {
+  font-weight: 600;
+}
+
+/* riga migliore in verde */
+.best {
+  color: #15803d; /* verde-700 */
+}
+
+/* badge “Migliore” */
+.badge {
+  background: #15803d;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}

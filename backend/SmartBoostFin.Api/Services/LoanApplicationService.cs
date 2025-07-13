@@ -46,6 +46,20 @@ public class LoanApplicationService
             }
         }
 
+        /* ───── Salva la pratica con la banca “migliore” (rata minore) ───── */
+        if (offers.Any())
+        {
+            var bestOffer = offers.OrderBy(o => o.MonthlyInstallment).First();
+            var bestBank = banks.First(b => b.Name == bestOffer.BankName);
+
+            draft.Status = LoanStatus.Approved;
+            draft.MonthlyInstallment = bestOffer.MonthlyInstallment;
+            draft.BankId = bestBank.Id;
+
+            _ctx.LoanApplications.Add(draft);
+            await _ctx.SaveChangesAsync();
+        }
+
         return new LoanApplicationResponseDto
         {
             Status = offers.Any() ? LoanStatus.Approved : LoanStatus.Rejected,

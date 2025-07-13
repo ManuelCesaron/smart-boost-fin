@@ -1,22 +1,27 @@
-<h2>Nuovo cliente</h2>
+<div class="customer-wrapper">
+<img src="/logo.png" alt="SmartBoostFin logo" class="logo">
 
-<form [formGroup]="form" (ngSubmit)="submit()" class="w-96 space-y-4">
-  <mat-form-field class="w-full" appearance="outline">
-    <mat-label>Nome</mat-label>
-    <input matInput formControlName="firstName" required>
-  </mat-form-field>
+  <h2 class="slogan">Prestiti 100% online, calcola ora la tua rata!</h2>
 
-  <mat-form-field class="w-full" appearance="outline">
-    <mat-label>Cognome</mat-label>
-    <input matInput formControlName="lastName" required>
-  </mat-form-field>
+  <form [formGroup]="form" (ngSubmit)="submit()" class="form-card">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="firstName" required>
+    </mat-form-field>
 
-  <mat-form-field class="w-full" appearance="outline">
-    <mat-label>RAL annua (€)</mat-label>
-    <input matInput type="number" formControlName="annualGrossSalary" required>
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Cognome</mat-label>
+      <input matInput formControlName="lastName" required>
+    </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
-    Continua
-  </button>
-</form>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>RAL annua (€)</mat-label>
+      <input matInput type="number" formControlName="annualGrossSalary" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="w-full" type="submit"
+            [disabled]="form.invalid">
+      Continua
+    </button>
+  </form>
+</div>

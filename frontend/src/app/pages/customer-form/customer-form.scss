@@ -1,0 +1,36 @@
+.customer-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* centra orizzontalmente */
+  justify-content: center;   /* centra verticalmente   */
+}
+
+/* ───────── Logo ───────── */
+.logo {
+  width: 180px !important;
+  height: 180px !important;
+  margin: 60px auto 2rem;   /* spazio esterno, non interno */
+  display: block;
+  object-fit: contain;      /* ridimensiona senza deformare */
+}
+
+/* ───────── Slogan ──────── */
+.slogan {
+  margin: 0 0 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ───────── Card form ───── */
+.form-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+  width: 100%;
+  max-width: 24rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}

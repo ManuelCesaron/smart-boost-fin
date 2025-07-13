@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartBoostFin.Api;
 
@@ -10,9 +11,11 @@ using SmartBoostFin.Api;
 namespace SmartBoostFin.Api.Migrations
 {
     [DbContext(typeof(FinContext))]
-    partial class FinContextModelSnapshot : ModelSnapshot
+    [Migration("20250713160031_RemoveMaxRiskLoan")]
+    partial class RemoveMaxRiskLoan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.18");

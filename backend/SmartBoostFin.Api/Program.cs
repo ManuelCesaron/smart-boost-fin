@@ -17,8 +17,11 @@ builder.Services.AddScoped<LoanApplicationService>();
 // ───── Servizi API standard ─────
 builder.Services
     .AddControllers()
-    .AddJsonOptions(o =>
-        o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())); builder.Services.AddEndpointsApiExplorer();
+.AddJsonOptions(o =>
+{
+    o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -39,6 +42,9 @@ using (var scope = app.Services.CreateScope())
 {
     var ctx = scope.ServiceProvider.GetRequiredService<FinContext>();
 
+    ctx.Database.Migrate();
+
+
     if (!ctx.Banks.Any())
     {
         ctx.Banks.AddRange(
@@ -48,7 +54,6 @@ using (var scope = app.Services.CreateScope())
                 Rate10 = 4.2m,
                 Rate20 = 3.1m,
                 Rate30 = 2.4m,
-                MaxRiskLoan = 250_000m
             },
             new Bank
             {
@@ -56,7 +61,6 @@ using (var scope = app.Services.CreateScope())
                 Rate10 = 3.9m,
                 Rate20 = 3.4m,
                 Rate30 = 2.9m,
-                MaxRiskLoan = 300_000m
             },
             new Bank
             {
@@ -64,7 +68,6 @@ using (var scope = app.Services.CreateScope())
                 Rate10 = 4.3m,
                 Rate20 = 3.3m,
                 Rate30 = 2.8m,
-                MaxRiskLoan = 220_000m
             },
             new Bank
             {
@@ -72,7 +75,6 @@ using (var scope = app.Services.CreateScope())
                 Rate10 = 3.8m,
                 Rate20 = 3.5m,
                 Rate30 = 2.3m,
-                MaxRiskLoan = 350_000m
             }
         );
         ctx.SaveChanges();

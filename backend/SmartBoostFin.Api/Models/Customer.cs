@@ -9,5 +9,5 @@ public class Customer
     //RAL lordo annuo
     public decimal AnnualGrossSalary { get; set; }
 
-    public ICollection<LoanApplication>? LoanApplications { get; set; }
+    public ICollection<LoanApplication> LoanApplications { get; set; } = new List<LoanApplication>();
 }

@@ -12,6 +12,7 @@ import { LoanService, LoanRequestDto } from '../../services/loan';
   standalone: true,
   selector: 'app-loan-form',
   templateUrl: './loan-form.html',
+  styleUrls: ['./loan-form.scss'],
   imports: [
     CommonModule,
     ReactiveFormsModule,

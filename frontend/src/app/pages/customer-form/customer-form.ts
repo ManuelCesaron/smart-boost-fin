@@ -11,6 +11,7 @@ import { LoanService } from '../../services/loan';
   standalone: true,
   selector: 'app-customer-form',
   templateUrl: './customer-form.html',
+  styleUrls: ['./customer-form.scss'],
   imports: [                
     CommonModule,
     ReactiveFormsModule,
