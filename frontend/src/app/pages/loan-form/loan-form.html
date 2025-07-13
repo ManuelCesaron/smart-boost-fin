@@ -1,0 +1,45 @@
+<h2>Richiesta prestito</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()" class="w-96 space-y-4">
+
+  <mat-form-field class="w-full" appearance="outline">
+    <mat-label>Importo (€)</mat-label>
+    <input matInput type="number" formControlName="amount" required>
+  </mat-form-field>
+
+  <mat-form-field class="w-full" appearance="outline">
+    <mat-label>Durata (mesi)</mat-label>
+    <input matInput type="number" formControlName="termMonths" required>
+  </mat-form-field>
+
+  <mat-form-field class="w-full" appearance="outline">
+    <mat-label>Scopo</mat-label>
+    <mat-select formControlName="purpose">
+      <mat-option value="FirstHomePurchase">Prima casa</mat-option>
+      <mat-option value="PersonalLoan">Prestito personale</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="form.value.purpose==='FirstHomePurchase'"
+                  class="w-full" appearance="outline">
+    <mat-label>Valore immobile (€)</mat-label>
+    <input matInput type="number" formControlName="propertyValue">
+  </mat-form-field>
+
+  <mat-form-field class="w-full" appearance="outline">
+    <mat-label>Tipo contratto</mat-label>
+    <mat-select formControlName="employmentType">
+      <mat-option value="Permanent">Indeterminato</mat-option>
+      <mat-option value="FixedTerm">Determinato</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="w-full" appearance="outline">
+    <mat-label>Rate altri prestiti (€ / mese)</mat-label>
+    <input matInput type="number" formControlName="existingLoanMonthly">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+    Calcola offerte
+  </button>
+</form>

@@ -2,6 +2,7 @@
 using SmartBoostFin.Api;
 using SmartBoostFin.Api.Models;
 using SmartBoostFin.Api.Services;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +15,10 @@ builder.Services.AddScoped<LoanCalculator>();
 builder.Services.AddScoped<LoanApplicationService>();
 
 // ───── Servizi API standard ─────
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(o =>
+        o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())); builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
